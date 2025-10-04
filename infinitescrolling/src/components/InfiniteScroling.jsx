@@ -48,12 +48,14 @@ const InfiniteScrolling = () => {
   }, []);
 
   return (
+    <>
+    <header>
     <div>
-      {error && <p>error: ${error}</p>}
+      {error && <p>error: {error}</p>}
       {products.map((product) => (
         <div key={product.id}>
           <img
-            style={{ display: "flex" }}
+            style={{ display: "flex",hover:"" }}
             src={product.thumbnail}
             alt={product.title}
           />
@@ -63,6 +65,11 @@ const InfiniteScrolling = () => {
 
       <div>{loading && <p>Loading......</p>}</div>
     </div>
+    </header>
+    <footer>
+    <span>Developed by Monal @2025.All Rights Reserved</span>
+    </footer>
+    </>
   );
 };
 
