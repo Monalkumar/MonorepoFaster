@@ -1,18 +1,14 @@
-import { useState } from 'react'
-
-import './App.css'
+import "./App.css";
+import InfiniteScrolling from "./components/InfiniteScroling";
 
 function App() {
-  
-
   return (
     <>
       <div>
-        <h1>Hello</h1>
+        <InfiniteScrolling />
       </div>
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
