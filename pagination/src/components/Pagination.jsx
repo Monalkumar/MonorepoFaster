@@ -61,7 +61,7 @@ const Pagination = () => {
       </div>
       </header>
       <footer>
-     <p>Developed by Monal @2025.All Rights Reserved</p>
+     <span>Developed by Monal @2025.All Rights Reserved</span>
       </footer>
     </>
   );
