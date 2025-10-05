@@ -27,7 +27,7 @@ const Pagination = () => {
     fetchData();
   }, []);
 
-  const selectedPage = (clickingPage) => {
+  const handleSelectedPage = (clickingPage) => {
     setPage(clickingPage);
   };
 
@@ -49,14 +49,14 @@ const Pagination = () => {
           </div>
         ))}
         <div>
-          <button disabled ={page===1} onClick={() => selectedPage(page - 1)}>◀</button>
+          <button aria-level="move to the previous page" disabled ={page===1} onClick={() => handleSelectedPage(page - 1)}>◀</button>
           {[...Array(totalPage)].map((_, i) => (
-            <span onClick={()=>selectedPage(i+1)} style={{cursor:"pointer"}} key={i} className={page === i + 1 ? "selectPages" : ""}>
+            <span onClick={()=>handleSelectedPage(i+1)} style={{cursor:"pointer"}} key={i} className={page === i + 1 ? "selectPages" : ""}>
               {i + 1}
             </span>
           ))}
 
-          <button disabled = {page===totalPage} onClick={() => selectedPage(page + 1)}>▶</button>
+          <button aria-level="move to the next page" disabled = {page===totalPage} onClick={() => handleSelectedPage(page + 1)}>▶</button>
         </div>
       </div>
       </header>
