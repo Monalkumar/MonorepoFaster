@@ -49,14 +49,14 @@ const Pagination = () => {
           </div>
         ))}
         <div>
-          <button aria-level="move to the previous page" disabled ={page===1} onClick={() => handleSelectedPage(page - 1)}>◀</button>
+          <button aria-label="move to the previous page" disabled ={page===1} onClick={() => handleSelectedPage(page - 1)}>◀</button>
           {[...Array(totalPage)].map((_, i) => (
             <span onClick={()=>handleSelectedPage(i+1)} style={{cursor:"pointer"}} key={i} className={page === i + 1 ? "selectPages" : ""}>
               {i + 1}
             </span>
           ))}
 
-          <button aria-level="move to the next page" disabled = {page===totalPage} onClick={() => handleSelectedPage(page + 1)}>▶</button>
+          <button aria-label="move to the next page" disabled = {page===totalPage} onClick={() => handleSelectedPage(page + 1)}>▶</button>
         </div>
       </div>
       </header>
