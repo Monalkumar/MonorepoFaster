@@ -45,6 +45,7 @@ const Pagination = () => {
               src={recipe.image}
               alt={recipe.name}
             />
+            <p>{recipe.name}</p>
           </div>
         ))}
         <div>
@@ -60,7 +61,7 @@ const Pagination = () => {
       </div>
       </header>
       <footer>
-     <span>Developed by Monal @2025.All Rights Reserved</span>
+     <p>Developed by Monal @2025.All Rights Reserved</p>
       </footer>
     </>
   );
