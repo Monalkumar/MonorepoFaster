@@ -12,7 +12,7 @@ function App() {
     <div>
     <header>
     
-      <h1 style={{ color: "red",fontSize:"11px" }}> 🙏🕉राधे राधे🕉🙏</h1>
+      <h1 style={{ color: "red",fontSize:"35px" }}> 🙏🕉राधे राधे🕉🙏</h1>
       <img
         src="https://i.pinimg.com/736x/ed/79/3d/ed793da575589af6aff0c77986426ae4.jpg"
         alt="image"
