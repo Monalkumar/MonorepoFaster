@@ -1,32 +1,47 @@
-// src/App.js
 const express = require("express");
-const connectDB = require("../config/database")
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
+dotenv.config();
+
 const app = express();
-const User =require("./models/user")
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
 
+console.log("✅ Loaded Mongo URL:", process.env.MONGO_URI);
+console.log("✅ Loaded PORT:", process.env.PORT);
 
-app.post("/signup", async (req,res)=>{
-    const user = new User({
-        firstName:"Monal",
-        emailId:"monal@gmail.com",
-        company:"Google",
-        age:"97",
-        userName:"monal12345"
-    })
-    
-    
-   await user.save();
-   res.send("API created successfully")
-})
+const PORT = process.env.PORT || 5000;
+const MONGO_URL = process.env.MONGO_URI;
 
+const connectDB = async () => {
+  try {
+    await mongoose.connect(MONGO_URL);
+    console.log("✅ MongoDB connected successfully");
+  } catch (err) {
+    console.log("❌ MongoDB Error:", err);
+  }
+};
 
-connectDB()
-.then(()=>{
-    console.log("database successfully connected")
-    app.listen(3000,()=>{
-    console.log("Server is running successfully on port 3000")
-})
-})
-.catch(()=>{
-    console.log("please resolve the connection establishment")
-})
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Backend is working!" });
+});
+
+app.get("/api/addTest", async (req, res) => {
+  try {
+    const Test = mongoose.model("Test", new mongoose.Schema({ name: String }));
+    const doc = await Test.create({ name: "Hello everyone" });
+    res.json(doc);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+connectDB();
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
