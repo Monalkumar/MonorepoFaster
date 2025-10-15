@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [backendMessage, setBackendMessage] = useState("");
+  const [dbResult, setDbResult] = useState("");
+
+  const testBackend = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/test");
+      const data = await res.json();
+      setBackendMessage(data.message);
+      console.log("Backend test:", data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const testDB = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/addTest");
+      const data = await res.json();
+      setDbResult(JSON.stringify(data));
+      console.log("DB insert test:", data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div style={{ padding: "20px" }}>
+      <h1>FullStack Test Page</h1>
+      <button onClick={testBackend} style={{ marginRight: "10px" }}>
+        Test Backend
+      </button>
+      <button onClick={testDB}>Test DB Insert</button>
 
-export default App
+      {backendMessage && <p>Backend Response: {backendMessage}</p>}
+      {dbResult && <p>DB Insert Result: {dbResult}</p>}
+    </div>
+  );
+};
+
+export default App;
