@@ -46,6 +46,29 @@ app.post("/signup",async(req,res)=>{
     
 })
 
+
+
+
+// get user by Email yar 
+
+app.get("/user",async(req,res)=>{
+    
+    const user = await User.find({email:req.body.email});
+    res.send(user)
+
+})
+
+app.delete("/dele",async(req,res)=>{
+    const userId = req.body.userId
+const user = await User.findByIdAndDelete(userId)
+res.send(user,"dele succesfully")
+})
+app.patch("/user",async(req,res)=>{
+    const userId = req.body.userId;
+  const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
+  res.json(updatedUser);
+})
+
 connectDB()
 .then(()=>{
 console.log("database is connected succfully thanks");
