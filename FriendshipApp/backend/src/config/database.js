@@ -6,4 +6,4 @@ await mongoose.connect("mongodb+srv://Shivamonal:zZNQNqsOt9SjeiMh@shivamonal.key
 }
 
 
-module.exports = connectDB
+module.exports = connectDB;

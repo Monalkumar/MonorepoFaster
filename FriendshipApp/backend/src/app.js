@@ -3,11 +3,22 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 app.use(express.json());
+const { usersValidations } = require("./utils/validation");
+const user = require("./models/user");
+const bcrypt = require("bcrypt");
+// const user = require("./models/user");
 
 // first I will do creation of the data using post methods , Manually
 app.post("/signup", async (req, res) => {
   try {
-    const user = new User(req.body);
+    usersValidations(req);
+    const{name,email,passWord,} = req.body;
+    const hasPasword = await bcrypt.hash(passWord,10);
+    console.log(hasPasword)
+    // const compare = await bcrypt.compare(passWord, "$2b$10$DOG.DLUs02PqV1/hnvKgsOn3ep9BGt/LSrRH/bBaZv8bDZx3It.DG" );
+    // console.log(compare)
+
+    const user = new User({name,email,passWord:hasPasword});
     const savedUser = await user.save();
 
     res
@@ -20,8 +31,46 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+
+// create login apis and store in databse in mongoose
+
+app.post("/login",async(req,res)=>{
+  try{
+    const {email,passWord} = req.body;
+    const user = await User.findOne({email:email});
+    if(!user){
+      throw new Error("please check email")
+    }
+    const isPasswordValid = await bcrypt.compare(passWord,user.passWord);
+    if(isPasswordValid){
+      res.send("login successfully")
+    }
+    else{
+      throw new Error("pleas check crendemtials")
+    }
+   }
+  catch(error){
+    res.status(404).send("Error:"+ error.message)
+
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
 // Get User from the database
 // for finding all the datas from the databse
+
+
+
 
 app.get("/feeds", async (req, res) => {
   try {
@@ -46,7 +95,7 @@ app.get("/feeds", async (req, res) => {
 
 app.delete("/dele", async (req, res) => {
   try {
-    const user = req.body;
+    const user = req.body._id;
     const dele = await User.findByIdAndDelete(user);
     res.status(200).send("please resolve yar");
     if (!dele) {
