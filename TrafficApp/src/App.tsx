@@ -7,7 +7,7 @@ const App:React.FC=()=> {
   return (
     <>
       <div>
-        <h3 style={{textAlign:"center"}}>Traffic Light</h3>
+        <h3 style={{textAlign:"center"}}>🕉</h3>
        <TrafficApp/>
       </div>
       

@@ -21,12 +21,15 @@ const TrafficApp: React.FC = () => {
    }
   }, [index])
   return (
+    <div>
+      
     <div style={{ border: "1px solid black", height: "251px", width: "95px", borderRadius: "25px", backgroundColor:"black" }}>
      {
       colorsConfig.map((items,i)=>(
         <div key={items.color} style={{backgroundColor:items.color,margin:"auto", boxShadow:"2px", borderRadius:"50px", opacity: index === i  ? 1 : 0.2, height:"75px", width:"85px"}}></div>
       ))
      }
+    </div>
     </div>
   )
 }
