@@ -2,75 +2,60 @@ const express = require("express");
 const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
-app.use(express.json());
 const { usersValidations } = require("./utils/validation");
-const user = require("./models/user");
 const bcrypt = require("bcrypt");
-// const user = require("./models/user");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const {userAuth} = require("./middlewares/auth");
 
-// first I will do creation of the data using post methods , Manually
-app.post("/signup", async (req, res) => {
-  try {
-    usersValidations(req);
-    const{name,email,passWord,} = req.body;
-    const hasPasword = await bcrypt.hash(passWord,10);
-    console.log(hasPasword)
-    // const compare = await bcrypt.compare(passWord, "$2b$10$DOG.DLUs02PqV1/hnvKgsOn3ep9BGt/LSrRH/bBaZv8bDZx3It.DG" );
-    // console.log(compare)
+app.use(express.json());
+app.use(cookieParser());
 
-    const user = new User({name,email,passWord:hasPasword});
-    const savedUser = await user.save();
+// User Signup APis logic things
 
-    res
-      .status(200)
-      .json({ message: "user added successfully", user: savedUser });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "error reolve this", error: error.message });
-  }
-});
-
+;
 
 // create login apis and store in databse in mongoose
 
-app.post("/login",async(req,res)=>{
-  try{
-    const {email,passWord} = req.body;
-    const user = await User.findOne({email:email});
-    if(!user){
-      throw new Error("please check email")
+app.post("/login", async (req, res) => {
+  try {
+    const { email, passWord } = req.body;
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      throw new Error("please check email");
     }
-    const isPasswordValid = await bcrypt.compare(passWord,user.passWord);
-    if(isPasswordValid){
-      res.send("login successfully")
-    }
-    else{
-      throw new Error("pleas check crendemtials")
-    }
-   }
-  catch(error){
-    res.status(404).send("Error:"+ error.message)
+    const isPasswordValid = await bcrypt.compare(passWord, user.passWord);
 
+    if (isPasswordValid) {
+      const token = await user.getJWT()
+      res.cookie("token", token);
+      res.send("login successfully");
+    } else {
+      throw new Error("pleas check crendemtials");
+    }
+  } catch (error) {
+    res.status(404).send("Error:" + error.message);
   }
+});
+
+// Profile Apis Logics
+
+app.get("/profile", userAuth, async (req, res) => {
+  try {
+    const user = req.user;
+    res.send(user);
+  } catch (error) {
+    res.status(404).send("Error resolve now" + error);
+  }
+});
+
+app.post("/chatapp",userAuth,(req,res)=>{
+  const user = req.user
+  res.send(user.name,"creating succesfully")
 })
-
-
-
-
-
-
-
-
-
-
-
 
 // Get User from the database
 // for finding all the datas from the databse
-
-
-
 
 app.get("/feeds", async (req, res) => {
   try {
@@ -148,11 +133,11 @@ app.patch("/update", async (req, res) => {
 
 connectDB()
   .then(() => {
-    console.log("database is connected successfully thanks");
+    console.log("Database connected successfully");
     app.listen(5000, () => {
-      console.log("backend is working fast and smooth");
+      console.log("Backend is working fast and smooth on port 5000");
     });
   })
   .catch((err) => {
-    console.log("error pleas  resolve");
+    console.error("MongoDB connection error:", err); // print actual error
   });
