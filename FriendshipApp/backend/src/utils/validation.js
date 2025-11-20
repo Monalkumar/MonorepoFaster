@@ -15,4 +15,11 @@ const usersValidations = (req) => {
   }
 };
 
-module.exports = { usersValidations };
+const validateEditprofile =(req)=>{
+  const allowedEditField = ["name", "email", "age", "gender","photoUrl","skills","about"];
+  const isEditAllowed = Object.keys(req.body).every((field)=>allowedEditField.includes(field))
+  return isEditAllowed;
+}
+
+
+module.exports = { usersValidations,validateEditprofile };
