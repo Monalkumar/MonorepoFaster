@@ -26,14 +26,14 @@ a:hover {
 
 body {
   margin: 0;
-  
+  display: flex;
   
   min-width: 320px;
   min-height: 100vh;
   background-image: url("https://i.pinimg.com/736x/9b/6b/98/9b6b9810d32699f3fa1fc7dd40af4703.jpg");
   /* Prevents the image from repeating */
   background-size: cover;
-  background-attachment: fixed
+  
 }
 
 h1 {
