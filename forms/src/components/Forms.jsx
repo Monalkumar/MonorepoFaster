@@ -12,13 +12,13 @@ const Forms = () => {
     address: "",
   });
 
-  const [ submittedForm, setSubmittedForm] = useState(null)
+  const [ submittedForm, setSubmittedForm] = useState(null)        
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormData(initial);
-    console.log(formData);
-    setSubmittedForm(formData)
+  e.preventDefault();
+  setFormData(initial);
+  console.log(formData);
+  setSubmittedForm(formData)
   };
 
   const handleChange = (e) => {
@@ -71,3 +71,4 @@ const Forms = () => {
 };
 
 export default Forms;
+
