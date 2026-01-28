@@ -1,12 +1,12 @@
 import React from "react";
-import FormsApps from "./components/FormsApps";
+import FormsProjects from "./components/FormsProjects"
 import "./App.css";
 
 function App() {
   return (
     <>
       <div>
-        <FormsApps />
+        <FormsProjects/>
       </div>
     </>                             
   );
