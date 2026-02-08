@@ -10,8 +10,8 @@ const TrafficApp: React.FC = () => {
       { color: "green", timing: 2500 }
 
     ]
-  const current = colorsConfig[index]
-
+  
+    
   useEffect(() => {
     const timer = setTimeout(() => {
       setIndex((prev) => (prev + 1) % colorsConfig.length)

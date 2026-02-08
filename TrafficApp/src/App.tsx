@@ -1,5 +1,5 @@
 import React from "react";
-import TrafficLightApp from "./components/TrafficLightApp.jsx"
+import TrafficApps from "./components/TrafficLightApp.jsx"
 import './App.css'
 
 const App:React.FC=()=> {
@@ -8,7 +8,7 @@ const App:React.FC=()=> {
     <>
       <div>
         <h3 style={{textAlign:"center"}}>🕉</h3>
-       <TrafficLightApp/>
+      <TrafficApps/>
       </div>
       
     </>
