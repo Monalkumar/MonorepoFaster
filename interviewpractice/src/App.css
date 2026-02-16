@@ -51,3 +51,15 @@
   opacity: 1;
   transform: scale(1.4);
 }
+
+.outer{
+  border: 1px solid black;
+  width: 500px;
+ border-radius: 50px;
+ overflow: hidden;
+}
+
+.inner{
+  background-color: blue;
+  transition: 1s ease-in;
+}
