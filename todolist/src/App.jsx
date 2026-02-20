@@ -1,20 +1,18 @@
 import React from 'react'
-import Todolist from './components/Todolist'
-
 import './App.css'
-
+import TodosApp from './components/TodosApp';
 function App() {
   
 
   return (
     <>
       <div>
-      <h1>Task Management</h1>
-        <Todolist/>
-      </div>
+      <h1>hello</h1>
+    <TodosApp/>
+     </div>
       
     </>
   )
 }
 
-export default App
+export default App;
