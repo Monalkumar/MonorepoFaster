@@ -1,4 +1,4 @@
-import UsersManagement from './components/UsersManagement';
+import ProgressApp from './components/ProgressApp';
 import './App.css'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <div>
        
-     <UsersManagement/>
+     <ProgressApp/>
       </div>
       
     </>

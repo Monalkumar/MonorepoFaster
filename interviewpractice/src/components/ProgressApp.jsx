@@ -16,7 +16,7 @@ const ProgressBar =({progress})=>{
         {progress}%
         </div>
         </div>
-    )
+    ) 
 }
 
 const ProgressApp =()=>{
