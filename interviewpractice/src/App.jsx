@@ -1,4 +1,4 @@
-import ProgressApp from './components/ProgressApp';
+import Notification from './components/Notification';
 import './App.css'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <div>
        
-     <ProgressApp/>
+     <Notification/>
       </div>
       
     </>

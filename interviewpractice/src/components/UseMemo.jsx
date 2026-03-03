@@ -1,7 +1,7 @@
 import React,{useState,useMemo} from "react";
 
 
-const UseMemo =()=>{
+    const UseMemo =()=>{
     const [counter, setCounter] = useState(0);
     const[number,setNumber] = useState(1);
     const heavyTask =(num)=>{
