@@ -13,11 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/login",
-        { email, passWord },
-        { withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:5000/login",{ email, passWord },{ withCredentials: true });
       console.log(res.data);
       dispatch(addUser(res.data));
       navigate("/feed");
@@ -53,18 +49,13 @@ const Login = () => {
                 />
               </fieldset>
               <div className="justify-end card-actions">
-                <button
-                  onClick={handleSubmit}
-                  className="btn bg-gradient-to-r from-zinc-700 to-blue-200 m-auto "
-                >
+                <button onClick={handleSubmit} className="btn bg-gradient-to-r from-zinc-700 to-blue-200 m-auto">
                   Sign In
                 </button>
               </div>
               <div>
                 <button
-                  className="text-sm font-bold"
-                  onClick={() => setLogin(true)}
-                >
+                  className="text-sm font-bold" onClick={() => setLogin(true)}>
                   Don't have an account, please SignUp
                 </button>
               </div>

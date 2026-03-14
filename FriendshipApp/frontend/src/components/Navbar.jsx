@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
-  console.log(user);
+  
   return (
     <div className="navbar bg-white/20 backdrop-blur-lg card-xl shadow-lg">
       <div className="flex-1">

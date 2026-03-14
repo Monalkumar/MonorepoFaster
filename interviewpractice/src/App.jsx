@@ -1,4 +1,4 @@
-import Notification from './components/Notification';
+import Counter from "./components/Counter.jsx";
 import './App.css'
 
 function App() {
@@ -8,9 +8,8 @@ function App() {
     <>
       <div>
        
-     <Notification/>
+     <Counter/>
       </div>
-      
     </>
   )
 }
