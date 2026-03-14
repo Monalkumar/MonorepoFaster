@@ -4,12 +4,12 @@ import useCount from "../CustomHooks/useCount.jsx"
 
 
 const Counter =()=>{
-    const{count,increamenet,decreamenet} = useCount()
+    const{count,increament,decreament} = useCount()
     return(
         <div>
         <h1>Counts:{count}</h1>
-        <button onClick={increamenet}>Increamnet</button>
-        <button onClick={decreamenet}>decreamenet</button>
+        <button onClick={increament}>Increamnet</button>
+        <button onClick={decreament}>decreamenet</button>
         </div>
     )
 }
