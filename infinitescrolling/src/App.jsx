@@ -1,13 +1,12 @@
 import "./App.css";
-import InfiniteScrolling from "./components/InfiniteScroling";
-
-function App() {
+import InfiniteScrolls from "./components/InfiniteScrolls";
+const App = () => {
   return (
-    <>
+    
       <div>
-        <InfiniteScrolling />
+        <InfiniteScrolls/>
       </div>
-    </>
+   
   );
 }
 
