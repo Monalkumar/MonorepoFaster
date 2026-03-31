@@ -23,7 +23,7 @@ const useFetch=(url)=>{
             setLoading(false)
         }
         
-    }
+    } 
     
     useEffect(()=>{
      fetchApi()

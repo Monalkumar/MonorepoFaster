@@ -1,21 +1,15 @@
-import Counter from "./components/Counter.jsx";
 import CounterA from "./components/CounterA.jsx";
-import CustomFetchApi from "./components/CustomFetchApi.jsx";
-import './App.css'
-
+import "./App.css";
+import SlidingImages from "./components/SlidingImages.jsx";
+import ShimmerUI from "./components/ShimmerUI"
 function App() {
-  
-
   return (
     <>
       <div>
-       
-     <Counter/>
-     <CounterA/>
-     <CustomFetchApi/>
+      <ShimmerUI/>
       </div>
     </>
-  )
+  );
 }
 
 export default App;

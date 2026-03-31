@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 const useCount =(initialState=0)=>{
     const[count,setCount] = useState(initialState);
-   const increament =()=>{
+    const increament =()=>{
     setCount(prev=>prev+1)
    }
-   const decreament =()=>{
+    const decreament =()=>{
     setCount(prev=>prev-1)
    }
-   const reset =()=>{
+    const reset =()=>{
     setCount(initialState)
    }
     return {count, increament, decreament, reset}

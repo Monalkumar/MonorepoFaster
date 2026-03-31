@@ -8,7 +8,7 @@ const SlidingImages = () =>{
         const response = await fetch("https://dummyjson.com/products");
         const result = await response.json();
         console.log(result.products);
-        setProducts(result.products )
+        setProducts(result.products)
     }
 
     useEffect(()=>{
@@ -52,3 +52,8 @@ const SlidingImages = () =>{
 }
 
 export default SlidingImages;
+
+
+
+
+
