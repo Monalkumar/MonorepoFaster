@@ -11,7 +11,7 @@ const TodosApp =()=>{
         if(editId){
             const updatedTodo = todos.map((t)=>t.id ===editId?{id:t.id,todo}:t);
             setTodos(updatedTodo);
-            setEditId(null)
+            setEditId(null) 
             setTodo("")
             return
         }
@@ -29,6 +29,7 @@ const TodosApp =()=>{
         const editTodos = todos.find((i)=>i.id ===id);
         setTodo(editTodos.todo)
         setEditId(id)
+       
     }
     return(
         <div>

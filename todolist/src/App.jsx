@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import TodosApp from './components/TodosApp';
+import Golu from './components/Golu';
 function App() {
   
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <div>
       <h1>hello</h1>
-    <TodosApp/>
+   <Golu/>
      </div>
       
     </>
