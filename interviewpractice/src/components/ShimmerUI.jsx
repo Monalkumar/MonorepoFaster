@@ -33,9 +33,7 @@ const ShimmerUI =()=>{
         <div>
 <div>
 {loading && (
-    <div>
-    <ShimmerUIComponents/>
-    </div>
+    <h1>Loading......</h1>
 )}
 {
     error && (

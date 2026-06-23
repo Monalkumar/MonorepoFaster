@@ -1,9 +1,15 @@
 import React from "react";
+import "../App.css"
 
 const ShimmerUIComponents =()=>{
-    <div className="shimmers-Color">
-   <h1>Loading......</h1>
-    </div>
+    return(
+     <div className="outer-component">
+     <div className="inner-component">
+
+     </div>
+   </div>
+    )
+   
 }
 
 export default ShimmerUIComponents;
