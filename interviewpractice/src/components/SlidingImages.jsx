@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 const SlidingImages = () =>{
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);  
     const[activeImage,setActiveImage] = useState(0);
 
     const fetchImages = async()=>{
@@ -10,7 +10,6 @@ const SlidingImages = () =>{
         console.log(result.products);
         setProducts(result.products)
     }
-
     useEffect(()=>{
     fetchImages()
     },[])
@@ -21,7 +20,7 @@ const SlidingImages = () =>{
     const nextSlide=()=>{
          if(products.length === 0) return;
          setActiveImage((activeImage)=>(activeImage+1)%products.length)
-    }
+        }
 
     useEffect(()=>{
         let timer = setInterval(()=>{

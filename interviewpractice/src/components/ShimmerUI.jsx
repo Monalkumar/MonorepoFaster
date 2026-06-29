@@ -51,4 +51,4 @@ const ShimmerUI =()=>{
     )
 }
 
-export default ShimmerUI
+export default ShimmerUI;
