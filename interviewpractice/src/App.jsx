@@ -1,13 +1,9 @@
-import CounterA from "./components/CounterA.jsx";
-import "./App.css";
-import SlidingImages from "./components/SlidingImages.jsx";
-import ShimmerUI from "./components/ShimmerUI"
-import PdfScannerApp from "./PdfScannerApp.jsx";
+import ImageSlider from "./components/ImageSlider";
 function App() {
   return (
     <>
       <div>
-     <PdfScannerApp/>
+    <ImageSlider/> 
       </div>
     </>
   );
