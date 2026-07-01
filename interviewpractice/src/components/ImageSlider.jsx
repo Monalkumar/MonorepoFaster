@@ -31,7 +31,7 @@ useEffect(()=>{
 
 
     return(
-        <div>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
         <img src="/assets/arrowkey.png" alt ="left-arrow" onClick={prevSlide}/>
         
         {products.length > 0 && (
@@ -43,3 +43,4 @@ useEffect(()=>{
 }
 
 export default ImageSlider;
+
