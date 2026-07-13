@@ -1,6 +1,6 @@
 import React from "react";
 import Awesome from "./components/Awesome";
-import Todos from "./components/Todos";
+import TypeAHead from "./components/TypeAHead";
 
 function App() {
  
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
      <div>
-   <Todos/>
+   <TypeAHead/>
      </div>
     </>
   )
