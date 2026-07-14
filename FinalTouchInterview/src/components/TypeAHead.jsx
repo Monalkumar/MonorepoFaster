@@ -3,21 +3,37 @@ import React, { useState, useEffect } from "react";
 const TypeAHead = () => {
   const [products, setProducts] = useState([]);
   const [input, setInput] = useState("");
-  const[show, setShow] = useState(true)
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
-    e.preventDefault();
     setInput(e.target.value);
+    
   };
 
   const fetchAPi = async () => {
-    console.log("API CLICKS:", input);
-    const response = await fetch(
-      "https://dummyjson.com/products/search?q=" + input,
-    );
-    const result = await response.json();
-    setProducts(result.products);
-    console.log(result);
+    try {
+      setError(null);
+      setLoading(true);
+      console.log("API CLICKS:", input);
+      const response = await fetch(
+        "https://dummyjson.com/products/search?q=" + input,
+      );
+      if (!response.ok) {
+        throw new Error("failed to fetch");
+      }
+      const result = await response.json();
+      setProducts(result.products);
+      console.log(result);
+
+    } catch (error) {
+      setError(`Error Message:${error}`);
+    } finally {
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchAPi();
@@ -26,10 +42,14 @@ const TypeAHead = () => {
       clearTimeout(timer);
     };
   }, [input]);
+  
 
   return (
     <>
-    <h1 style={{textAlign:"center"}}>Search Bar</h1>
+      {error && <div>{error.message}</div>}
+
+      {loading && <div>Loading.....</div>}
+      <h1 style={{ textAlign: "center" }}>Search Bar</h1>
       <div
         style={{
           borderRadius: "50px",
@@ -39,6 +59,8 @@ const TypeAHead = () => {
         }}
       >
         <input
+          onFocus={() => setShow(true)}
+          onBlur={() => setShow(false)}
           style={{ width: "295px", height: "25px" }}
           type="text"
           placeholder="type here....."
@@ -46,23 +68,27 @@ const TypeAHead = () => {
           value={input}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-
-      
+      {show && (
         <div
-          style={{ width: "295px", height: "701px", border: "1px solid black" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          {products.map((product) => (
-            <div>{product.title}</div>
-          ))}
+          <div
+            style={{
+              width: "295px",
+              height: "701px",
+              border: "1px solid black",
+            }}
+          >
+            {products.map((product) => (
+              <div key={product.id}>{product.title}</div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
