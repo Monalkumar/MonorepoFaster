@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 
 const TypeAHead = () => {
   const [products, setProducts] = useState([]);
@@ -6,47 +6,68 @@ const TypeAHead = () => {
   const [show, setShow] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const abortRef = useRef(null);
 
   const handleChange = (e) => {
     setInput(e.target.value);
     
   };
 
-  const fetchAPi = async () => {
+  const fetchAPi = async (signal) => {
+    
     try {
+     
       setError(null);
       setLoading(true);
       console.log("API CLICKS:", input);
-      const response = await fetch(
-        "https://dummyjson.com/products/search?q=" + input,
-      );
+      
+      if(!input.trim()){
+       setProducts([])
+       return
+      }
+      
+      const query = encodeURIComponent(input.trim())
+      const response = await fetch(`https://dummyjson.com/products/search?q=${query}`,{signal});
       if (!response.ok) {
         throw new Error("failed to fetch");
       }
+      
       const result = await response.json();
       setProducts(result.products);
+      if(result.products.length===0){
+        console.log("list not found")
+      }
       console.log(result);
 
     } catch (error) {
-      setError(`Error Message:${error}`);
+      if(error.name === "AbortError"){
+        return;
+      }
+      setError(`Error Message:${error.message}`);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    if(abortRef.current){
+      abortRef.current.abort()
+    }
+    const controller = new AbortController();
+    abortRef.current = controller
     const timer = setTimeout(() => {
-      fetchAPi();
+      fetchAPi(controller.signal);
     }, 400);
     return () => {
       clearTimeout(timer);
+      controller.abort()
     };
   }, [input]);
   
 
   return (
     <>
-      {error && <div>{error.message}</div>}
+      {error && <div>Error:{error}</div>}
 
       {loading && <div>Loading.....</div>}
       <h1 style={{ textAlign: "center" }}>Search Bar</h1>
@@ -83,9 +104,15 @@ const TypeAHead = () => {
               border: "1px solid black",
             }}
           >
-            {products.map((product) => (
-              <div key={product.id}>{product.title}</div>
-            ))}
+            {
+              
+              products.length > 0 ? products.map((product) => (
+
+              <div key={product.id}>{product.title}</div> 
+
+            )) : <div>products not found</div>
+          }
+
           </div>
         </div>
       )}
