@@ -11,7 +11,7 @@ const InfiniteScrolling = () => {
     try {
       const LIMIT = 10;
       const skip = page * LIMIT;
-      setLoading(true);
+      setLoading(true);   
       setError(null);
       const response = await fetch(
         `https://dummyjson.com/products?limit=${LIMIT}&skip=${skip}`

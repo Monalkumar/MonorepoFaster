@@ -64,7 +64,8 @@
           </div>
         ))}
       </div>
-      {loading && <h1>loading......</h1>}
+      <div> {loading && <h1>loading......</h1>}</div>
+     
     </div>
   );
 };

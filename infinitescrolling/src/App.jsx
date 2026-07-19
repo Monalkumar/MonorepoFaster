@@ -1,10 +1,10 @@
 import "./App.css";
-import InfiniteScrolls from "./components/InfiniteScrolls";
+import MoreParctice from "./components/MoreParctice";
 const App = () => {
   return (
     
       <div>
-        <InfiniteScrolls/>
+      <MoreParctice/>
       </div>
    
   );
