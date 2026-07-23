@@ -5,7 +5,7 @@ const MoreParctice =()=>{
     const[loading,setLoading] = useState(false);
     const [error, setError] = useState(null);
     const[hasMore, setHasMore] = useState(true);
-    const[page,setPage] = useState(0)
+    const[page,setPage] = useState(0) 
 
     const fetchApis =async()=>{
         try{
@@ -32,7 +32,14 @@ const MoreParctice =()=>{
         fetchApis()
     },[page])
 
+let count = 0;
+window.addEventListener("scroll", () => {
+  count++;
+  console.log(count + " baar chala");
+});
+
     const handleScroll = useCallback(()=>{
+        if(loading && !hasMore) return;
         const Top = document.documentElement.scrollTop;
         const Height = document.documentElement.scrollHeight;
         const innerHeight = window.innerHeight;
