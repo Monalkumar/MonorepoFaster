@@ -11,7 +11,7 @@ const MoreParctice =()=>{
         try{
             setLoading(true);
             setError(null)
-                 const LIMIT = 10;
+            const LIMIT = 10;
         const skip = page*LIMIT
         const response = await fetch(`https://dummyjson.com/products?limit=${LIMIT}&skip=${skip}`);
         const result = await response.json();
@@ -70,7 +70,7 @@ window.addEventListener("scroll", () => {
         }
         {
             loading && (
-                <div>Loading.....</div>
+                <span class="loader"></span>
             ) 
         }
         
