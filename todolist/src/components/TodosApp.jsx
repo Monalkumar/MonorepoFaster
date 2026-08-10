@@ -35,7 +35,7 @@ const TodosApp =()=>{
         <div>
         <form onSubmit={handleSubmit}> 
         <input  type="text" value={todo} placeholder="search here ...." onChange={(e)=>setTodo(e.target.value)}/>
-        <button type="submit">Add Todos</button>
+        <button>Add Todos</button>
         </form>
         <div>
         <ul>

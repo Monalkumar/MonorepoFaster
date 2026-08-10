@@ -29,7 +29,7 @@ const handleDelet =(id)=>{
     setTodos(delTodos)
 }
 
-const haandleEdit =(id)=>{
+const haandleEdit = (id) => {
     const editTodos = todos.find((i)=>i.id === id);
     setTodo(editTodos.todo)
     seEditId(id)
